@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.hello-world.js"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="js/jquery.vimeo-play.js"></script>
+</head>
+
+<body>
+
+  <iframe
+    src="https://player.vimeo.com/video/76979871"
+    width="640"
+    height="360"
+    frameborder="0"
+    webkitallowfullscreen
+    mozallowfullscreen
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    // jQuery(document).ready( function($) {
+  	// 	$('h2').helloWorld({
+  	// 		text		: 'Salut, le monde!',
+  	// 		color		: '#005dff',
+  	// 		fontStyle	: 'italic',
+  	// 		complete	: function() { alert('Done!'); }
+  	// 	});
+  	// });
+
+    jQuery(document).ready( function($) {
+  		$('iframe').vimeoPlay({
+  			loop		: 'true'
+  		});
+  	});
+  </script>
+
+</body>
+</html>
