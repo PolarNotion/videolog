@@ -3,7 +3,7 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.hello-world.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="js/jquery.vimeo-play.js"></script>
+  <script src="js/jquery.video-actions.js"></script>
 </head>
 
 <body>
@@ -38,10 +38,10 @@
   	// 	});
   	// });
     jQuery(document).ready( function($) {
-  		$('iframe').vimeoPlay({
+  		$('iframe').videoActions({
   			loop		: 'true'
   		});
-      $('video').vimeoPlay({
+      $('video').videoActions({
         loop		: 'true'
       });
   	});
