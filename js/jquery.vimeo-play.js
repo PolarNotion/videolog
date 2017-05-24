@@ -14,8 +14,12 @@
         var iframe = document.querySelector('iframe');
         var player = new Vimeo.Player(iframe);
 
+        player.on('pause', function() {
+          console.log('The VIMEO video was paused');
+        });
+
         player.on('play', function() {
-          console.log('played the video!');
+          console.log('The VIMEO video was played');
         });
       }
 
