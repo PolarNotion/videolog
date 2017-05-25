@@ -31,7 +31,19 @@
   allowfullscreen>
 </iframe>
 
-  <video id="html"
+  <video
+    id="html"
+    width="600"
+    height="400"
+    controls>
+    <source
+    src="videos/art_of_chill_show.mp4"
+    type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <video
+    id="html2"
     width="600"
     height="400"
     controls>
@@ -51,7 +63,7 @@
   	// 	});
   	// });
     jQuery(document).ready( function($) {
-  		$('iframe').videoActions({
+      $('iframe').videoActions({
   			loop		: 'true'
   		});
       $('video').videoActions({
