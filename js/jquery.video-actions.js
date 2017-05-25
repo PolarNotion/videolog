@@ -15,10 +15,8 @@
         var player = new Vimeo.Player(iframe);
 
         player.on('pause', function() {
-          console.log('The VIMEO video was paused');
-
           player.getCurrentTime().then(function(seconds) {
-            console.log("Time: " + seconds);
+            console.log("Vimeo video paused at: " + seconds);
           }).catch(function(error) {
               console.log("There was an error");
           });
@@ -26,10 +24,8 @@
         });
 
         player.on('play', function() {
-          console.log('The VIMEO video was played');
-
           player.getCurrentTime().then(function(seconds) {
-            console.log("Time: " + seconds);
+            console.log("Vimeo video played at: " + seconds);
           }).catch(function(error) {
               console.log("There was an error");
           });
@@ -41,10 +37,10 @@
 
         $(video1).click(function() {
           if (video1.paused) {
-            console.log('Video Paused', video1.currentTime);
+            console.log('HTML5 Video played at: ', video1.currentTime);
           }
           else if (video1.played) {
-            console.log('Video Playing', video1.currentTime);
+            console.log('HTML5 Video paused at: ', video1.currentTime);
           }
         });
       }
