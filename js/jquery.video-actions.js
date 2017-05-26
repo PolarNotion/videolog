@@ -18,21 +18,20 @@
           player.getCurrentTime().then(function(seconds) {
             console.log("Vimeo video paused at: " + seconds);
           }).catch(function(error) {
-              console.log("There was an error");
+            console.log("There was an error");
           });
-
         });
 
         player.on('play', function() {
           player.getCurrentTime().then(function(seconds) {
             console.log("Vimeo video played at: " + seconds);
           }).catch(function(error) {
-              console.log("There was an error");
+            console.log("There was an error");
           });
-
         });
+        //END of Vimeo video
 
-        //HTML 5 Video usng DOM API
+        //HTML 5 Video using DOM API
         var video1 = document.querySelector('video');
 
         $(video1).click(function() {
@@ -43,6 +42,8 @@
             console.log('HTML5 Video paused at: ', video1.currentTime);
           }
         });
+        //END of HTML 5 Video
+
       }
 
     });
