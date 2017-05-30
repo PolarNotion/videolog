@@ -1,53 +1,44 @@
 (function($) {
-
   $.fn.videoActions = function(options) {
 
     // Establish our default settings
-    var settings = $.extend({
-      loop: true
-    }, options);
+    var settings = $.extend({}, $.fn.videoActions.defaults, options);
+    var v_players={};
+    var id
 
-    return this.each(function() {
+    return $(".vimeo").each(function() {
 
-      if ( settings.loop ) {
-        //VIMEO Video using vAPI
-        var iframe = document.querySelector('iframe');
-        var player = new Vimeo.Player(iframe);
+          //VIMEO Video using vAPI
+          //var iframe = document.querySelector('iframe');
+          var id = this.id;
+          v_players[id] = new Vimeo.Player(id);
 
-        player.on('pause', function() {
-          player.getCurrentTime().then(function(seconds) {
-            console.log("Vimeo video paused at: " + seconds);
-          }).catch(function(error) {
-            console.log("There was an error");
+          v_players[id].on('pause', function() {
+            v_players[id].getCurrentTime().then(function(seconds) {
+              console.log("Vimeo video paused at: " + seconds);
+            }).catch(function(error) {
+              console.log("There was an error");
+            });
           });
-        });
 
-        player.on('play', function() {
-          player.getCurrentTime().then(function(seconds) {
-            console.log("Vimeo video played at: " + seconds);
-          }).catch(function(error) {
-            console.log("There was an error");
+          v_players[id].on('play', function() {
+            v_players[id].getCurrentTime().then(function(seconds) {
+              console.log("Vimeo video played at: " + seconds);
+            }).catch(function(error) {
+              console.log("There was an error");
+            });
           });
-        });
-        //END of Vimeo video
-
-        //HTML 5 Video using DOM API
-        var video1 = document.querySelector('video');
-
-        $(video1).click(function() {
-          if (video1.paused) {
-            console.log('HTML5 Video played at: ', video1.currentTime);
-          }
-          else if (video1.played) {
-            console.log('HTML5 Video paused at: ', video1.currentTime);
-          }
-        });
-        //END of HTML 5 Video
-
-      }
+          //END of Vimeo video
 
     });
+  };
 
+  $.fn.videoActions.defaults = {
+      height: '390',
+      width: '640',
+      vimeo: false,
+      html5: false,
+      youtube: false
   };
 
 }(jQuery));
