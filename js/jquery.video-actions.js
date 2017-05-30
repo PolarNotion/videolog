@@ -4,7 +4,9 @@
     // Establish our default settings
     var settings = $.extend({}, $.fn.videoActions.defaults, options);
 
-    return $(".vimeo").each(function() {
+    return this.each( function() {
+
+        $(".vimeo").each(function() {
 
           //VIMEO Video using vAPI
           //var iframe = document.querySelector('iframe');
@@ -26,6 +28,8 @@
             });
           });
           //END of Vimeo video
+      });
+
     });
 
   };
