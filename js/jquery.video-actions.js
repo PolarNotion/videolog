@@ -30,6 +30,19 @@
           //END of Vimeo video
       });
 
+      //HTML 5 Video using DOM API
+      var video1 = document.querySelector('video');
+
+      $(video1).click(function() {
+        if (video1.paused) {
+          console.log('HTML5 Video played at: ', video1.currentTime);
+        }
+        else if (video1.played) {
+          console.log('HTML5 Video paused at: ', video1.currentTime);
+        }
+      });
+      //END of HTML 5 Video
+
     });
 
   };
