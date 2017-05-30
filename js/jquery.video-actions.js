@@ -26,14 +26,13 @@
             });
           });
           //END of Vimeo video
-
     });
 
   };
 
   $.fn.videoActions.defaults = {
-      height: '390',
-      width: '640',
+      height: '0',
+      width: '0',
   };
 
 }(jQuery));
