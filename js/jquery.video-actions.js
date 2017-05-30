@@ -28,14 +28,12 @@
           //END of Vimeo video
 
     });
+
   };
 
   $.fn.videoActions.defaults = {
       height: '390',
       width: '640',
-      vimeo: false,
-      html5: false,
-      youtube: false
   };
 
 }(jQuery));
