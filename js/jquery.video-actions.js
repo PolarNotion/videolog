@@ -1,9 +1,6 @@
 (function($) {
   $.fn.videoActions = function(options) {
 
-    var video_player={};
-    var id = this.id;
-
     // Establish our default settings
     var settings = $.extend({}, $.fn.videoActions.defaults, options);
 
@@ -36,16 +33,16 @@
 
       $(".video").each(function() {
 
-        var video_player={};
+        //var video_player={};
         var id = this.id;
 
-      video_player[id] = document.getElementById(id);
+        var video_player = document.getElementById(id);
 
-        $(video_player[id]).click(function() {
-          if (video_player[id].paused) {
-            console.log('HTML5 Video played at: ', video1.currentTime);
+        $(video_player).click(function() {
+          if (video_player.paused) {
+            console.log('HTML5 Video', id, 'played at: ', video1.currentTime);
           }
-          else if (video_player[id].played) {
+          else if (video_player.played) {
             console.log('HTML5 Video paused at: ', video1.currentTime);
           }
         });
