@@ -43,7 +43,7 @@
             console.log('HTML5 Video', id, 'played at: ', video1.currentTime);
           }
           else if (video_player.played) {
-            console.log('HTML5 Video paused at: ', video1.currentTime);
+            console.log('HTML5 Video', id, 'paused at: ', video1.currentTime);
           }
         });
         //END of HTML 5 Video
