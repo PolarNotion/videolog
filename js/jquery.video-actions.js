@@ -71,7 +71,7 @@
           }
 
           function getStatus(playerStatus) {
-            debugger;
+            //debugger;
             if (playerStatus == -1) {
               console.log("Not yet started"); // unstarted = gray
             } else if (playerStatus == 0) {
@@ -97,6 +97,7 @@
 
       }
 
+      //Youtube/iFrame API script
       var tag = document.createElement('script');
       tag.id = 'iframe-demo';
       tag.src = 'https://www.youtube.com/iframe_api';
@@ -108,6 +109,7 @@
   };
 
   $.fn.videoActions.defaults = {
+    //Maybe don't need this? What other stuff to add make plugin more customizable
       height: '0',
       width: '0',
   };
