@@ -58,12 +58,14 @@
   <h2> Youtube Videos </h2>
 
   <iframe
+    id="yt1"
     class="youtube"
     src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
     frameborder="0">
   </iframe>
 
   <iframe
+    id="yt2"
     class="youtube"
     src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
     frameborder="0">
@@ -71,17 +73,12 @@
 
   <script>
     jQuery(document).ready( function($) {
-      //Vimeo
+      //Vimeo + HTML5 Videos
       $(this).videoActions({
-        height: '500',
-        width: '800',
-  		});
-      $(this.id).videoActions({
-        height: '500',
-        width: '800',
-  		});
-    });
 
+  		});
+
+    });
   </script>
 
 </body>
