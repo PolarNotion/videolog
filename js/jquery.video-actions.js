@@ -11,11 +11,12 @@
 
           //VIMEO Video using vAPI
           //var iframe = document.querySelector('iframe');
-          var player = new Vimeo.Player(this);
+          var id = this.id;
+          var player = new Vimeo.Player(id);
 
           player.on('pause', function() {
             player.getCurrentTime().then(function(seconds) {
-              console.log("Vimeo video paused at: " + seconds);
+              console.log('Vimeo video', id, 'paused at: ' + seconds);
             }).catch(function(error) {
               console.log("There was an error");
             });
@@ -23,7 +24,7 @@
 
           player.on('play', function() {
             player.getCurrentTime().then(function(seconds) {
-              console.log("Vimeo video played at: " + seconds);
+              console.log('Vimeo video', id, 'played at: ' + seconds);
             }).catch(function(error) {
               console.log("There was an error");
             });
@@ -35,7 +36,6 @@
 
         //var video_player={};
         var id = this.id;
-
         var video_player = document.getElementById(id);
 
         $(video_player).click(function() {
