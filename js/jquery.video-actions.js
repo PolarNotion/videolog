@@ -65,6 +65,32 @@
               }
           });
 
+          function onPlayerReady(event) {
+
+            document.getElementById(id);
+          }
+
+          function getStatus(playerStatus) {
+            debugger;
+            if (playerStatus == -1) {
+              console.log("Not yet started"); // unstarted = gray
+            } else if (playerStatus == 0) {
+              console.log("Youtube video", id, "has ended at ", ytplayer.getCurrentTime());
+            } else if (playerStatus == 1) {
+              console.log("Youtube video ", id, " is playing at ", ytplayer.getCurrentTime());
+            } else if (playerStatus == 2) {
+              console.log("Youtube video", id, "has been paused at ", ytplayer.getCurrentTime());
+            } else if (playerStatus == 3) {
+              console.log("Youtube video", id, "is buffering at ", ytplayer.getCurrentTime());
+            } else if (playerStatus == 5) {
+              console.log("Youtube video", id, "was cued at ", ytplayer.getCurrentTime());
+            }
+          }
+
+          function onPlayerStateChange(event) {
+            getStatus(event.data);
+          }
+
           // END OF YOUTUBE SETTINGS
 
         });
