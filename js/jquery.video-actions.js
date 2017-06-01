@@ -52,6 +52,21 @@
 
       window.onYouTubeIframeAPIReady = function() {
 
+        $(".youtube").each(function() {
+
+          // BEGINNING OF YOUTUBE SETTINGS
+          //debugger;
+          var id = this.id;
+          var ytplayer;
+          ytplayer = new YT.Player(id, {
+              events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+              }
+          });
+
+          // END OF YOUTUBE SETTINGS
+
         });
 
       }
