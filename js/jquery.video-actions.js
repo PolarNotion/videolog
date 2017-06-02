@@ -13,14 +13,21 @@
 
         $(".vimeo").each(function() {
 
-          //VIMEO Video using vAPI
-          //var iframe = document.querySelector('iframe');
+          // //VIMEO Video using vAPI
+          //
+          //   if (document.querySelector('iframe') {
+          //     // check if url has vimeo or youtube word in url
+          //     // if url == youtube
+          //       // run youtube code
+          //     // else if url == vimeo
+          //     // run vimeo code
+          //   }
           var id = this.id;
           var player = new Vimeo.Player(id);
 
           player.on('pause', function() {
             player.getCurrentTime().then(function(seconds) {
-              console.log('Vimeo video', id, 'paused at: ' + seconds);
+              console.log('Vimeo video ' + id + ' paused at: ' + seconds);
             }).catch(function(error) {
               console.log("There was an error");
             });
@@ -28,7 +35,7 @@
 
           player.on('play', function() {
             player.getCurrentTime().then(function(seconds) {
-              console.log('Vimeo video', id, 'played at: ' + seconds);
+              console.log('Vimeo video ' + id + ' played at: ' + seconds);
             }).catch(function(error) {
               console.log("There was an error");
             });
@@ -44,10 +51,10 @@
 
         $(video_player).click(function() {
           if (video_player.paused) {
-            console.log('HTML5 Video', id, 'played at: ', video1.currentTime);
+            console.log('HTML5 Video ' + id + ' played at: ' + video1.currentTime);
           }
           else if (video_player.played) {
-            console.log('HTML5 Video', id, 'paused at: ', video1.currentTime);
+            console.log('HTML5 Video ' + id + ' paused at: ' + video1.currentTime);
           }
         });
         //END of HTML 5 Video
