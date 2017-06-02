@@ -2,7 +2,11 @@
   $.fn.videoActions = function(options) {
 
     // Establish our default settings
-    var settings = $.extend({}, $.fn.videoActions.defaults, options);
+    var settings = $.extend({
+      vimeo: false,
+      youtube: false,
+      video: false
+    }, options);
 
 
     return this.each( function() {
@@ -108,10 +112,10 @@
 
   };
 
-  $.fn.videoActions.defaults = {
-    //Maybe don't need this? What other stuff to add make plugin more customizable
-      height: '0',
-      width: '0',
-  };
+  // $.fn.videoActions.defaults = {
+  //   //Maybe don't need this? What other stuff to add make plugin more customizable
+  //     height: '0',
+  //     width: '0',
+  // };
 
 }(jQuery));
