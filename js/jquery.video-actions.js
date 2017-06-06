@@ -5,7 +5,7 @@
         var settings = $.extend({
 
         }, options);
-        var youtubevids = [];
+        var youtubeVids = [];
 
         return this.each(function() {
 
@@ -14,28 +14,29 @@
 
             // Go through each iframe video (youtube or vimeo)
             for (i = 0; i < iframeVids.length; i++) {
-              if (this === iframeVids[i]) {
+                if (this === iframeVids[i]) {
 
-                // Check iframe src attribute has 'vimeo' word
-                if ($(iframeVids[i]).attr('src').indexOf("vimeo") > -1) {
+                    // Check iframe src attribute has 'vimeo' word
+                    if ($(iframeVids[i]).attr('src').indexOf("vimeo") > -1) {
 
 
-                    var id = this.id;
-                    var player = new Vimeo.Player(id);
+                        var id = this.id;
+                        var player = new Vimeo.Player(id);
 
-                    player.on('pause', function() {
-                        player.getCurrentTime().then(function(seconds) {
-                            console.log('Vimeo video ' + id + ' paused at: ' + seconds);
-                        }).catch(function(error) {
-                            console.log("There was an error");
+                        player.on('pause', function() {
+                            player.getCurrentTime().then(function(seconds) {
+                                console.log('Vimeo video ' + id + ' paused at: ' + seconds);
+                            }).catch(function(error) {
+                                console.log("There was an error");
+                            });
                         });
-                    });
 
-                    player.on('play', function() {
-                        player.getCurrentTime().then(function(seconds) {
-                            console.log('Vimeo video ' + id + ' played at: ' + seconds);
-                        }).catch(function(error) {
-                            console.log("There was an error");
+                        player.on('play', function() {
+                            player.getCurrentTime().then(function(seconds) {
+                                console.log('Vimeo video ' + id + ' played at: ' + seconds);
+                            }).catch(function(error) {
+                                console.log("There was an error");
+                            });
                         });
                         //END of Vimeo video
                     }
@@ -92,7 +93,6 @@
                         }
                     }
                 }
-              }
             }
 
             //Youtube/iFrame API script
@@ -120,33 +120,14 @@
                     //END of HTML 5 Video
                 }
             }
-          }
-
-          function onPlayerStateChange(event) {
-            getStatus(event.data);
-          }
-
-          // END OF YOUTUBE SETTINGS
 
         });
 
-      }
-
-      //Youtube/iFrame API script
-      var tag = document.createElement('script');
-      tag.id = 'iframe-demo';
-      tag.src = 'https://www.youtube.com/iframe_api';
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    });
-
-  };
-
-  // $.fn.videoActions.defaults = {
-  //   //Maybe don't need this? What other stuff to add make plugin more customizable
-  //     height: '0',
-  //     width: '0',
-  // };
+    };
+    // $.fn.videoActions.defaults = {
+    //   //Maybe don't need this? What other stuff to add make plugin more customizable
+    //     height: '0',
+    //     width: '0',
+    // };
 
 }(jQuery));
