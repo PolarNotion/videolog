@@ -14,21 +14,21 @@
     <div class="list-videos">
 
         <h2> Vimeo Videos </h2>
-        <iframe id="vplayer2" class="trackable-video" src="https://player.vimeo.com/video/134957419" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+        <iframe id="vplayer2" class="trackable-video-1" src="https://player.vimeo.com/video/134957419" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
   </iframe>
 
-        <iframe id="vplayer1" class="trackable-video" src="https://player.vimeo.com/video/76979871" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+        <iframe id="vplayer1" class="trackable-video-1" src="https://player.vimeo.com/video/76979871" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
   </iframe>
 
         <h2> HTML5 Videos </h2>
-        <video id="video1" class="trackable-video" height="250" width="350" controls>
+        <video id="video1" class="trackable-video-2" height="250" width="350" controls>
     <source
     src="videos/art_of_chill_show.mp4"
     type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
-        <video id="video2" class="trackable-video" height="250" width="350" controls>
+        <video id="video2" class="trackable-video-2" height="250" width="350" controls>
     <source
     src="videos/art_of_chill_show.mp4"
     type="video/mp4">
@@ -37,10 +37,10 @@
 
         <h2> Youtube Videos </h2>
 
-        <iframe id="yt1" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0">
+        <iframe id="yt1" class="trackable-video-3" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0">
   </iframe>
 
-        <iframe id="yt2" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0">
+        <iframe id="yt2" class="trackable-video-3" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0">
   </iframe>
 
     </div>
@@ -48,7 +48,13 @@
     <script>
         jQuery(document).ready(function($) {
 
-            $(".trackable-video").videoActions({
+            $(".trackable-video-1").videoActions({
+
+            });
+            $(".trackable-video-2").videoActions({
+
+            });
+            $(".trackable-video-3").videoActions({
 
             });
 
