@@ -33,12 +33,15 @@
                         });
 
                         player.on('play', function() {
+                          player.on('timeupdate', function() {
                             player.getCurrentTime().then(function(seconds) {
                                 console.log('Vimeo video ' + id + ' played at: ' + seconds);
                             }).catch(function(error) {
                                 console.log("There was an error");
                             });
+                          });
                         });
+
                         //END of Vimeo video
                     }
                     else if ($(iframeVids[i]).attr('src').indexOf("youtube") > -1) {
@@ -116,22 +119,17 @@
 
                     $(video_player).click(function() {
                         if (video_player.paused) {
-                            console.log('HTML5 Video ' + id + ' played at: ' + video1.currentTime);
+                          video_player.ontimeupdate = function()  {
+                            console.log('HTML5 Video ' + id + ' played at: ' + video_player.currentTime);
+                          }
                         } else if (video_player.played) {
-                            console.log('HTML5 Video ' + id + ' paused at: ' + video1.currentTime);
+                            console.log('HTML5 Video ' + id + ' paused at: ' + video_player.currentTime);
                         }
                     });
                     //END of HTML 5 Video
                 }
             }
-
         });
-
     };
-    // $.fn.videoActions.defaults = {
-    //   //Maybe don't need this? What other stuff to add make plugin more customizable
-    //     height: '0',
-    //     width: '0',
-    // };
 
 }(jQuery));
