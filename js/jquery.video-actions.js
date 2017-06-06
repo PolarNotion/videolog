@@ -37,8 +37,60 @@
                         }).catch(function(error) {
                             console.log("There was an error");
                         });
-                    });
-                    //END of Vimeo video
+                        //END of Vimeo video
+                    }
+                    else if ($(iframeVids[i]).attr('src').indexOf("youtube") > -1) {
+
+                        youtubeVids.push(this);
+                        var videoScope = this;
+
+                        function createYoutubeVideoById(id) {
+                            var id = youtubeVids[i].id;
+                            console.log(youtubeVids[i], 'videos');
+                            var ytplayer;
+                            ytplayer = new YT.Player(id, {
+                                events: {
+                                    'onReady': onPlayerReady,
+                                    'onStateChange': onPlayerStateChange
+                                }
+                            });
+
+                            function onPlayerReady(event) {
+                                document.getElementById(id);
+                            }
+
+                            function getStatus(playerStatus) {
+
+                                if (playerStatus == -1) {
+                                    console.log("Not yet started"); // unstarted = gray
+                                } else if (playerStatus == 0) {
+                                    console.log("Youtube video " + id + " has ended at " + ytplayer.getCurrentTime());
+                                } else if (playerStatus == 1) {
+                                    console.log("Youtube video " + id + " is playing at " + ytplayer.getCurrentTime());
+                                } else if (playerStatus == 2) {
+                                    console.log("Youtube video " + id + " has been paused at " + ytplayer.getCurrentTime());
+                                } else if (playerStatus == 3) {
+                                    console.log("Youtube video " + id + " is buffering at " + ytplayer.getCurrentTime());
+                                } else if (playerStatus == 5) {
+                                    console.log("Youtube video " + id + " was cued at " + ytplayer.getCurrentTime());
+                                }
+                            }
+
+                            function onPlayerStateChange(event) {
+                                getStatus(event.data);
+                            }
+                        }
+
+                        window.onYouTubeIframeAPIReady = function() {
+
+                            for (i = 0; i < youtubeVids.length; i++) {
+                                createYoutubeVideoById(videoScope.id)
+
+                                //youtubevids.forEach(createYoutubeVideoById(videoScope.id));
+
+                            }
+                        }
+                    }
                 }
               }
             }
