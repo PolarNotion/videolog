@@ -3,19 +3,22 @@
   <script src="js/jquery.min.js"></script>
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="js/jquery.video-actions.js"></script>
-  <script src="http://www.youtube.com/iframe_api"></script>
+
+
 
 </head>
 
 <body>
 
-  <h2>Console</h2>
+<h2>Console</h2>
   <textarea rows="10" cols="40" id="log" readonly></textarea>
+
+<div class="list-videos">
 
 <h2> Vimeo Videos </h2>
   <iframe
   id="vplayer2"
-  class="vimeo"
+  class="trackable-video"
   src="https://player.vimeo.com/video/134957419"
   frameborder="0"
   webkitallowfullscreen
@@ -25,7 +28,7 @@
 
   <iframe
     id="vplayer1"
-    class="vimeo"
+    class="trackable-video"
     src="https://player.vimeo.com/video/76979871"
     frameborder="0"
     webkitallowfullscreen
@@ -36,7 +39,7 @@
 <h2> HTML5  Videos </h2>
   <video
     id="video1"
-    class="video"
+    class="trackable-video"
     height="250"
     width="350"
     controls>
@@ -48,7 +51,7 @@
 
   <video
     id="video2"
-    class="video"
+    class="trackable-video"
     height="250"
     width="350"
     controls>
