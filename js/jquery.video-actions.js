@@ -2,24 +2,14 @@
     $.fn.videoActions = function(options) {
 
         // Establish our default settings
-        var settings = $.extend({
-
-        }, options);
+        var settings = $.extend({}, options);
         var youtubeVids = [];
         var playMessage;
 
         return this.each(function() {
 
-            var iframeVids = document.body.querySelectorAll('iframe');
-            var videoVids = document.body.querySelectorAll('video');
-
-            // Go through each iframe video (youtube or vimeo)
-            for (i = 0; i < iframeVids.length; i++) {
-                if (this === iframeVids[i]) {
-
-                    // Check iframe src attribute has 'vimeo' word
-                    if ($(iframeVids[i]).attr('src').indexOf("vimeo") > -1) {
-
+                  if ($(this).is("iframe")) {
+                    if ($(this).attr('src').indexOf("vimeo") > -1) {
 
                         var id = this.id;
                         var player = new Vimeo.Player(id);
