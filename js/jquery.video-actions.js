@@ -34,14 +34,13 @@
 
                         //END of Vimeo video
                     }
-                    else if ($(iframeVids[i]).attr('src').indexOf("youtube") > -1) {
+                    else if ($(this).attr('src').indexOf("youtube") > -1) {
 
                         youtubeVids.push(this);
                         var videoScope = this;
 
                         function createYoutubeVideoById(id) {
                             var id = youtubeVids[i].id;
-                            console.log(youtubeVids[i], 'videos');
                             var ytplayer;
                             ytplayer = new YT.Player(id, {
                                 events: {
