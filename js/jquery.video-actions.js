@@ -82,14 +82,27 @@
 
                             for (i = 0; i < youtubeVids.length; i++) {
                                 createYoutubeVideoById(videoScope.id)
-
-                                //youtubevids.forEach(createYoutubeVideoById(videoScope.id));
-
                             }
-                        }
+                          }
+                      }
+                  }
+
+                    if ($(this).is("video")) {
+
+                        var id = this.id;
+                        var video_player = document.getElementById(id);
+
+                        $(video_player).click(function() {
+                            if (video_player.paused) {
+                              video_player.ontimeupdate = function()  {
+                                console.log('HTML5 Video ' + id + ' played at: ' + video_player.currentTime);
+                              }
+                            } else if (video_player.played) {
+                                console.log('HTML5 Video ' + id + ' paused at: ' + video_player.currentTime);
+                            }
+                        });
+                        //END of HTML 5 Video
                     }
-                }
-            }
 
             //Youtube/iFrame API script
             var tag = document.createElement('script');
