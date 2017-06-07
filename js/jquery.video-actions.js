@@ -98,26 +98,6 @@
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-            //Loop through HTML5 videos
-            for (i = 0; i < videoVids.length; i++) {
-
-                if (this === videoVids[i]) {
-
-                    var id = this.id;
-                    var video_player = document.getElementById(id);
-
-                    $(video_player).click(function() {
-                        if (video_player.paused) {
-                          video_player.ontimeupdate = function()  {
-                            console.log('HTML5 Video ' + id + ' played at: ' + video_player.currentTime);
-                          }
-                        } else if (video_player.played) {
-                            console.log('HTML5 Video ' + id + ' paused at: ' + video_player.currentTime);
-                        }
-                    });
-                    //END of HTML 5 Video
-                }
-            }
         });
     };
 
