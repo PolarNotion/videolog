@@ -4,12 +4,16 @@
         // Establish our default settings
         var settings = $.extend({}, options);
         var youtubeVids = [];
-        var playMessage;
+        var isPlayMessage = true;
 
         return this.each(function() {
 
                   if ($(this).is("iframe")) {
                     if ($(this).attr('src').indexOf("vimeo") > -1) {
+
+                      $.getScript('https://player.vimeo.com/api/player.js', function(jd) {
+                        console.log("vimeo api loaded");
+                     });
 
                         var id = this.id;
                         var player = new Vimeo.Player(id);
