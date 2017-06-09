@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>VideoLog</title>
+
+  <meta property="og:title" content="Scrollmptious: " />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://polarnotion.github.io/turntable/" />
+  <meta property="og:image" content="" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+
+
+  <nav class="navbar navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://polarnotion.github.io/turntable/">VideoLog.js</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="https://www.producthunt.com/tech/turntable-js" target="_blank"><i class="fa fa-product-hunt"></i> Upvote</a>
+        </li>
+        <li>
+          <a href="#install">Install</a>
+        </li>
+        <a href="Turntable.zip" class="btn btn-white-outline navbar-btn">Try it!</a>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <header class="pad-section position-9">
+    <div class="container">
+      <div class="container-center text-center">
+        <h1 class="text-color">VideoLog.js<br>A Javascript Video Utility</h1>
+        <em class="text-color lead">"///"</em>
+      </div>
+    </div>
+  </header>
+  
+    <div class="container">
+      <h2 id="examples">What is this?</h2>
+      <p class="lead">Videolog is a jquery plugin that lets you view video activity from users on either HTML5 videos, Youtube, and/or Vimeo videos.</p>
+
+      <h2 id="install">Installation</h2>
+      <p class="lead">  
+        Download the 
+        <a href="https://raw.githubusercontent.com/PolarNotion/jquery-scrollmptious/master/dist/jquery.scrollmptious.min.js">production version</a> 
+        or the 
+        <a href="https://raw.githubusercontent.com/PolarNotion/jquery-scrollmptious/master/dist/jquery.scrollmptious.js">development version</a>.
+      </p>
+          
+      <div>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-pills" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#html" aria-controls="home" role="tab" data-toggle="tab">HTML</a>
+          </li>
+          <li role="presentation">
+            <a href="#js" aria-controls="profile" role="tab" data-toggle="tab">JS</a>
+          </li>
+          <li role="presentation">
+            <a href="#css" aria-controls="profile" role="tab" data-toggle="tab">CSS</a>
+          </li>
+        </ul>
+
+        <br>
+        
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="html">
+            <pre class="prettyprint pad">
+//Select any iframe or video element by giving it a class name to use for the plugin to track.
+//Use a unique id to idenity which video if you have multiple videos on the page.
+
+&lt;iframe id="vplayer" class="trackable-video" src="https://player.vimeo.com/video/76979871"&gt;&lt;/iframe&gt;
+
+&lt;iframe id="ytplayer" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"&gt;&lt;/iframe&gt;
+
+&lt;video id="video1" class="trackable-video" height="250" width="350" controls&gt;
+&lt;source src="videos/video-example.mp4" type="video/mp4"> Your browser does not support HTML5 video. &lt;/video&gt;
+
+&lt;script src="jquery.js"&gt;&lt;/script&gt; // jquery
+&lt;script src="dist/videolog.min.js"&gt;&lt;/script&gt; // video plugin
+&lt;script src="https://player.vimeo.com/api/player.js"&gt;&lt;/script&gt; //vimeo api
+            </pre>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="js">
+            <pre class="prettyprint pad language-java">
+  $('trackable-video').videoLog(); 
+            </pre>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="css">
+            <pre class="prettyprint pad language-java">
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100vw;
+  transition: top 0.2s ease-in-out;
+}
+            </pre>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="demo">
+
+    <div><h2 id="settings">Demo</h2>
+      <p class="lead">Three different videos; Vimeo, Youtube, and HTML5 videos.</p></div><!-- flex item #1 -->
+    
+    <div>           <!-- flex item #2 and nested flex container -->
+    
+        <div><!-- flex item and nested flex container -->
+
+          
+            <div>
+            <iframe id="vp2" class="trackable-video" src="https://player.vimeo.com/video/134957419" width="450" height="260">
+      </iframe></div><!-- flex item -->
+            
+            <div> 
+            <iframe id="yt1" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" width="450" height="260"></iframe>
+      </div><!-- flex item -->
+            
+            <div>
+            <iframe id="yt2" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" width="450" height="260"></iframe></div><!-- flex item -->
+
+        </div><!-- end flex item / container 2.1 -->
+        
+        <div><textarea id="log" class=console rows="40" cols="50" id="log" readonly></textarea></div><!-- flex item -->
+        
+    </div>          <!-- end flex item / container #2 -->
+    
+  <div>
+  <p class="lead">Technically it doesnt matter which element you target with jquery if youre using your own code, but you should try to target a single element and not a collection if youre going that route. </p>
+      <br>
+  </div>
+  
+</div>
+
+
+      
+
+
+      <br>
+
+      <ul class="list-inline">
+        <li>See what people are saying on:</li>
+        <li>
+          <a href="https://twitter.com/search?q=turntable.js" target="_blank">
+            <i class="fa fa-twitter"></i> Twitter
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/search/top/?q=turntable.js" target="_blank">
+            <i class="fa fa-facebook"></i> Facebook
+          </a>
+        </li>
+        <li>
+          <a href="https://www.reddit.com/r/web_design/comments/4fhx16/turntablejs_a_responsive_JQuery_slider_that_will/" target="_blank">
+            <i class="fa fa-reddit-alien"></i> Reddit
+          </a>
+        </li>
+        <li>
+          <a href="https://www.producthunt.com/tech/turntable-js" target="_blank">
+            <i class="fa fa-product-hunt"></i> Product Hunt
+          </a>
+        </li>
+      </ul>
+      <br>
+      <p>v 1.0.0</p>
+    </div>
+  </section>
+
+  <section id="subscription_footer">
+    <style type="text/css">
+      #subscription_footer {
+        padding: 40px;
+        background-color: #222;
+        color: white;
+      }
+      #subscription_footer label {
+        color: white;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+      #subscription_footer h2 {
+        color: white;
+      }
+      #subscription_footer h2::after {
+        content: " ";
+        border-bottom: 1px solid white;
+        width: 100px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+      }
+      #subscription_footer .btn-white-outline.btn-lg {
+        text-transform: uppercase;
+      }
+      #subscription_footer .btn-white-outline.btn-lg:hover,
+      #subscription_footer .btn-white-outline.btn-lg:active {
+        color: #222;
+        text-transform: uppercase;
+      }
+    </style>
+    <div class="container container-md">
+      <h2 class="text-center">Get more free plugins.</h2>
+      <p class="text-center text-white lead">Let us send more free stuff, right to your inbox.</p>
+      <form class="jotform-form" action="https://submit.jotformpro.com/submit/61093322709958/" method="post" name="form_61093322709958" id="61093322709958" accept-charset="utf-8"> 
+        <input type="hidden" name="formID" value="61093322709958" />
+        <div class="form-all">
+          <div class="form-section page-section">
+            <!-- <div class="form-line form-group" data-type="control_textbox" id="id_4">
+              <label class="form-label form-label-top" id="label_4" for="input_4"> Name </label>
+              <div id="cid_4" class="form-input-wide jf-required">
+                <input type="text" class="form-control form-textbox" data-type="input-textbox" id="input_4" name="q4_name" size="20" value="" />
+              </div>
+            </div> -->
+            <div class="form-line form-group jf-required" data-type="control_email" id="id_3">
+              <label class="form-label form-label-top" id="label_3" for="input_3"> Email <span class="form-required"> * </span></label>
+              <div id="cid_3" class="form-input-wide jf-required">
+                <input type="email" class="form-control form-textbox validate[required, Email]" id="input_3" name="q3_email3" size="30" value="" />
+              </div>
+            </div>
+            <div class="form-line form-group text-center" data-type="control_button" id="id_2">
+              <div id="cid_2" class="form-input-wide">
+                <div class="form-buttons-wrapper">
+                  <button id="input_2" type="submit" class="form-submit-button btn btn-white-outline btn-lg"> Submit </button>
+                </div>
+              </div>
+            </div>
+            <div style="display:none">
+              Should be Empty: <input type="text" name="website" value="" />
+            </div>
+          </div>
+        </div>
+        <input type="hidden" id="simple_spc" name="simple_spc" value="61093322709958" />
+        <script type="text/javascript"> document.getElementById("si" + "mple" + "_spc").value = "61093322709958-61093322709958"; </script>
+      </form>
+    </div>
+  </section>
+
+  <footer class="text-center">
+    <div class="container">
+      <iframe src="https://ghbtns.com/github-btn.html?user=polarnotion&repo=scroll-plugin&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+      <iframe src="https://ghbtns.com/github-btn.html?user=polarnotion&type=follow&count=true&size=small" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+      <br>
+      <br>
+      <p>
+        <a href="http://polarnotion.com/?ref=turntable" class="text-white" target="_blank">
+          Built by Polar Notion
+          <br>
+          <em>Go Boldly Forward</em>
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./js/scrollmptious.min.js"></script>
+  <script type="text/javascript" src="./js/video-log.js"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
+
+  <script>
+
+    jQuery(document).ready(function($) {
+
+      $(".trackable-video").videoActions({
+
+      });
+    });
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-33343564-10', 'auto');
+    ga('send', 'pageview');
+
+
+    (function() {
+        if (!console) {
+            console = {};
+        }
+        var old = console.log;
+        var logger = document.getElementById('log');
+        console.log = function(message) {
+            if (typeof message == 'object') {
+                logger.innerHTML += (JSON && JSON.stringify ?
+                    JSON.stringify(message) :
+                    String(message)) + '\n';
+            } else {
+                logger.innerHTML += message + '\n';
+            }
+        }
+    })();
+
+  </script>
+
+  <script src="https://cdn.optimizely.com/js/2773220324.js"></script>
+
+</body>
+</html>
