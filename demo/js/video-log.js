@@ -100,14 +100,13 @@
 
                 var id = this.id;
 
-
-                $this.click(function () {
-                    if (video_player.paused) {
-                        video_player.ontimeupdate = function () {
-                            console.log('HTML5 Video ' + id + ' played at: ' + video_player.currentTime);
+                this.click(function () {
+                    if (this.paused) {
+                        this.ontimeupdate = function () {
+                            console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
                         }
-                    } else if (video_player.played) {
-                        console.log('HTML5 Video ' + id + ' paused at: ' + video_player.currentTime);
+                    } else if (this.played) {
+                        console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);
                     }
                 });
                 //END of HTML 5 Video
