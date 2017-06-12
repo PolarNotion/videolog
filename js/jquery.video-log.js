@@ -95,16 +95,14 @@
             if ($this.is("video")) {
 
                 var id = this.id;
-                console.log(this)
-                $this.click(function () {
-                    console.log($this)
-                    if (this.paused) {
-                        this.ontimeupdate = function () {
-                            console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
-                        }
-                    } else if (this.played) {
-                        console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);
-                    }
+
+                $this.on("play", function () {
+                    $this.on("timeupdate", function () {
+                        console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
+                    });
+                });
+                $this.on("pause", function () {
+                    console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);      
                 });
                 //END of HTML 5 Video
             }

@@ -16,7 +16,6 @@
                 if ($this.attr('src').indexOf("vimeo") > -1) {
 
                     // Vimeo API Script
-                    //debugger;
                     var id = this.id;
                     var player = new Vimeo.Player(id);
 
@@ -95,22 +94,20 @@
                 }
             }
             // Check if object is a video element
-
             if ($this.is("video")) {
 
                 var id = this.id;
 
-                this.click(function () {
-                    if (this.paused) {
-                        this.ontimeupdate = function () {
-                            console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
-                        }
-                    } else if (this.played) {
-                        console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);
-                    }
-                });
-                //END of HTML 5 Video
+                $this.on("play", function () {
+                    $this.on("timeupdate", function () {
+                        console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
+                    });
+                });    
+                $this.on("pause", function () {
+                    console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);      
+                });    
             }
+
 
             //Youtube-iFrame API script
             var tag = document.createElement('script');
