@@ -8,10 +8,12 @@
 
         return this.each(function () {
 
+            var $this = $(this)
+
             // Check if object is an iframe element,
             // then check if src attribute contains vimeo or youtube
-            if ($(this).is("iframe")) {
-                if ($(this).attr('src').indexOf("vimeo") > -1) {
+            if ($this.is("iframe")) {
+                if ($this.attr('src').indexOf("vimeo") > -1) {
 
                     // Vimeo API Script
                     //debugger;
@@ -38,7 +40,7 @@
 
                     //END of Vimeo video
                 }
-                else if ($(this).attr('src').indexOf("youtube") > -1) {
+                else if ($this.attr('src').indexOf("youtube") > -1) {
 
                     youtubeVids.push(this);
                     var videoScope = this;
@@ -93,12 +95,13 @@
                 }
             }
             // Check if object is a video element
-            if ($(this).is("video")) {
+
+            if ($this.is("video")) {
 
                 var id = this.id;
-                var video_player = document.getElementById(id);
 
-                $(video_player).click(function () {
+
+                $this.click(function () {
                     if (video_player.paused) {
                         video_player.ontimeupdate = function () {
                             console.log('HTML5 Video ' + id + ' played at: ' + video_player.currentTime);
