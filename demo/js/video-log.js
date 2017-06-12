@@ -1,5 +1,5 @@
 (function ($) {
-    $.fn.videoActions = function (options) {
+    $.fn.videoLog = function (options) {
 
         // Establish our settings
         var settings = $.extend({}, options);
