@@ -2,9 +2,9 @@
     $.fn.videoLog = function (options) {
 
         // Establish our settings
-        var settings = $.extend({}, options);
+        var settings    = $.extend({}, options);
         var youtubeVids = [];
-        var isPlayMessage = true;
+        var message;
 
         return this.each(function () {
 
@@ -78,7 +78,7 @@
                                 console.log('Youtube video ' + id + ' is buffering at ' + ytplayer.getCurrentTime());
                             } else if (playerStatus == 5) {
                                 console.log('Youtube video ' + id + ' was cued at ' + ytplayer.getCurrentTime());
-                            } 
+                            }
                             if (playerStatus != 1) {
                                 clearInterval(message);
                             }
