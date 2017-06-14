@@ -312,7 +312,7 @@ probably a tab not needed?
             console = {};
         }
         var old = console.log;
-        var logger = document.getElementById('log');
+        var logger = document.getElementById('log' + 'log2');
         console.log = function(message) {
             if (typeof message == 'object') {
                 logger.innerHTML += (JSON && JSON.stringify ?
