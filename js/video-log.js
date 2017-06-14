@@ -59,13 +59,12 @@
                         }
 
                         function getStatus(playerStatus) {
-
                             if (playerStatus == -1) {
                                 console.log("Not yet started"); // unstarted = gray
                             } else if (playerStatus == 0) {
                                 console.log("Youtube video " + id + " has ended at " + ytplayer.getCurrentTime());
                             } else if (playerStatus == 1) {
-                                var message = setInterval(function () {
+                                message = setInterval(function () {
                                     console.log("Youtube video " + id + " is playing at " + ytplayer.getCurrentTime());
                                 }, 1000);
                             } else if (playerStatus == 2) {
