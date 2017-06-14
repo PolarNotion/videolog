@@ -1,104 +1,76 @@
 <html lang="en">
-<head>
-  <script src="js/jquery.min.js"></script>
-  <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="js/jquery.video-actions.js"></script>
-  <script src="http://www.youtube.com/iframe_api"></script>
 
+<head>
+    <script src="js/jquery.min.js"></script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="js/jquery.video-log.js"></script>
 </head>
 
 <body>
 
-  <h2>Console</h2>
-  <textarea rows="10" cols="40" id="log" readonly></textarea>
+    <h2>Console</h2>
+    <textarea rows="10" cols="40" id="log" readonly></textarea>
 
-<h2> Vimeo Videos </h2>
-  <iframe
-  id="vplayer2"
-  class="vimeo"
-  src="https://player.vimeo.com/video/134957419"
-  frameborder="0"
-  webkitallowfullscreen
-  mozallowfullscreen
-  allowfullscreen>
+    <div class="list-videos">
+
+        <h2> Vimeo Videos </h2>
+        <iframe id="vplayer2" class="trackable-video" src="https://player.vimeo.com/video/134957419" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
   </iframe>
 
-  <iframe
-    id="vplayer1"
-    class="vimeo"
-    src="https://player.vimeo.com/video/76979871"
-    frameborder="0"
-    webkitallowfullscreen
-    mozallowfullscreen
-    allowfullscreen>
+        <iframe id="vplayer1" class="trackable-video" src="https://player.vimeo.com/video/76979871" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
   </iframe>
 
-<h2> HTML5  Videos </h2>
-  <video
-    id="video1"
-    class="video"
-    height="250"
-    width="350"
-    controls>
+        <h2> HTML5 Videos </h2>
+        <video id="video1" class="trackable-video" height="250" width="350" controls>
     <source
     src="videos/art_of_chill_show.mp4"
     type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
-  <video
-    id="video2"
-    class="video"
-    height="250"
-    width="350"
-    controls>
+        <video id="video2" class="trackable-video" height="250" width="350" controls>
     <source
     src="videos/art_of_chill_show.mp4"
     type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
-  <h2> Youtube Videos </h2>
+        <h2> Youtube Videos </h2>
 
-  <iframe
-    id="yt1"
-    class="youtube"
-    src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
-    frameborder="0">
+        <iframe id="yt1" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0">
   </iframe>
 
-  <iframe
-    id="yt2"
-    class="youtube"
-    src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1"
-    frameborder="0">
+        <iframe id="yt2" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0">
   </iframe>
 
-  <script>
-    jQuery(document).ready( function($) {
-      //Vimeo + HTML5 Videos
-      $(this).videoActions({
+    </div>
 
-  		});
+    <script>
+        jQuery(document).ready(function($) {
 
-    });
+            $(".trackable-video").videoLog({
 
-(function () {
-    if (!console) {
-        console = {};
-    }
-    var old = console.log;
-    var logger = document.getElementById('log');
-    console.log = function (message) {
-        if (typeof message == 'object') {
-            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : String(message)) + '<br />';
-        } else {
-            logger.innerHTML += message + '\n';
-        }
-    }
-})();
+            });
+        });
 
-  </script>
+        // (function() {
+        //     if (!console) {
+        //         console = {};
+        //     }
+        //     var old = console.log;
+        //     var logger = document.getElementById('log');
+        //     console.log = function(message) {
+        //         if (typeof message == 'object') {
+        //             logger.innerHTML += (JSON && JSON.stringify ?
+        //                 JSON.stringify(message) :
+        //                 String(message)) + '\n';
+        //         } else {
+        //             logger.innerHTML += message + '\n';
+        //         }
+        //     }
+        // })();
+    </script>
 
 </body>
+
 </html>
