@@ -58,7 +58,8 @@ textarea.console {
   border-color: #bbb !important;
   padding: 10px !important;
   background-color: #f5f5f5;
-  float: right;
+  height:100px;
+  width:950px;
 }
 
 /*Demo Container for videos and console*/
@@ -329,7 +330,11 @@ a.text-primary:hover {
 .nav-pills > li.active > a:hover {
   color: #fff;
   background-color: #FF0005;
-  border-color: #FF0005; }
+  border-color: #FF0005;
+  float:none;
+  display:inline-block;
+  zoom:1;
+  text-align:center; }
 
 .btn.btn-primary:hover,
 .btn.btn-primary:active,
