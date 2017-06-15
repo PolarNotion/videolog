@@ -57,14 +57,11 @@
         </div>
     </header>
     <div class="container">
-        <h2 id="examples">What is this?</h2>
-        <p class="lead">VideoLog is a jquery plugin that lets you view video activity from users on either HTML5 MP4 videos, Youtube, and/or Vimeo platforms.</p>
 
-      <div class=row>
-        <div class=col-sm-6>
-          <div>
+              <div class="row" style="text-align:center;">
                 <!-- Nav tabs -->
-                <ul class="nav nav-pills" role="tablist">
+                <center>
+                <ul class="nav nav-pills" role="tablist" style="text-align:center;float:none;display:inline-block;">
                     <li role="presentation" class="active">
                         <a href="#vimeo" aria-controls="home" role="tab" data-toggle="tab">
                         <img src="images/vimeo.png" alt="Vimeo" style="width:80px;height:40px;">
@@ -81,29 +78,43 @@
                         </a>
                     </li>
                 </ul>
+                </center>
                 <br>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="vimeo">
-                    <iframe id="vp1" class="trackable-video" src="https://player.vimeo.com/video/134957419" width="450" height="260"></iframe>
+                    <iframe id="vp1" class="trackable-video" src="https://player.vimeo.com/video/134957419" width="500" height="300"></iframe>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="youtube">
-                    <iframe id="yt1" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" width="450" height="260"></iframe>
+                    <iframe id="yt1" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" width="500" height="300"></iframe>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="mp4">
-                    <video id="video1" class="trackable-video" width="450" height="260" controls>
+                    <video id="video1" class="trackable-video" width="500" height="300" controls>
                     <source src="videos/art_of_chill_show.mp4" type="video/mp4"> Your browser does not support HTML5 video.
                   </video>
                     </div>
                 </div>
-            </div>
+              </div>
+          <div class="row">
+          <center>
+             <textarea id="log" class=console readonly></textarea>
+          </center>
+          </div>
+            
+            
+
+        <h2 id="examples">What is this?</h2>
+        <p class="lead">VideoLog.js is a jquery plugin that lets you view video activity from users on either HTML5 MP4 videos, Youtube, and/or Vimeo platforms.</p>
+        <p class="lead">Rather than having functionatlity of seeing one video on one platform, you may have multiple videos from any of the three platforms above.</p>
+
+ <!--      <div class=row>
+        <div class=col-sm-6>
+
         </div>
         <div class="col-sm-6">
-          <div>
-             <textarea id="log" class=console rows="16" cols="50" readonly></textarea>
-          </div>
+          
         </div>
-      </div>
+      </div> -->
     </div>
     </br>
     </br>
@@ -112,6 +123,7 @@
     <div class="container">
 
         <h2 id="install">Installation</h2>
+        <p class="lead">Installing VideoLog.js is easy. Simply <b>Download VideoLog.js</b>, include videolog.min.js in your javascript file or at the bottom of your html document and call the <b>videolog function</b>. Use any Vimeo, Youtube iframe element or HTML5 video Element and give each a <b>class name</b> to be used when calling the function. Our example below has 'trackable-video' class name. If multiple videos are on the page, give each a <b>unique id</b> to eliminate confusion of which video you are tracking.</p>
         <p class="lead">
             Download the
             <a href="#">production version</a> or the
