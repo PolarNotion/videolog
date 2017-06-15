@@ -82,16 +82,22 @@
                 <br>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active embed-responsive embed-responsive-4by3" id="vimeo">
-                    <iframe id="vp1" class="trackable-video embed-responsive-item" src="https://player.vimeo.com/video/134957419" width="500" height="300"></iframe>
+                    <div role="tabpanel" class="tab-pane active auto-resizable-iframe" id="vimeo">
+                    <div>
+                    <iframe id="vp1" class="trackable-video" src="https://player.vimeo.com/video/134957419" frameborder="0" allowfullscreen=""></iframe>
                     </div>
-                    <div role="tabpanel" class="tab-pane embed-responsive embed-responsive-4by3" id="youtube">
-                    <iframe id="yt1" class="trackable-video embed-responsive-item" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" width="500" height="300"></iframe>
                     </div>
-                    <div role="tabpanel" class="tab-pane embed-responsive embed-responsive-4by3" id="mp4">
-                    <video id="video1" class="trackable-video embed-responsive-item" width="500" height="300" controls>
+                    <div role="tabpanel" class="tab-pane auto-resizable-iframe" id="youtube">
+                    <div>
+                    <iframe id="yt1" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0" allowfullscreen=""></iframe>
+                    </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane auto-resizable-iframe" id="mp4">
+                    <div>
+                    <video id="video1" class="trackable-video" controls>
                     <source src="videos/art_of_chill_show.mp4" type="video/mp4"> Your browser does not support HTML5 video.
                   </video>
+                  </div>
                     </div>
                 </div>
               </div>

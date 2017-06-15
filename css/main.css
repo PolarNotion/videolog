@@ -63,8 +63,27 @@ textarea.console {
 }
 
 .responsive-input{
-  width: 100%;
+  width: 95%;
   height: 100px;
+}
+
+.auto-resizable-iframe {
+  max-width: 500px;
+  margin: 0px auto;
+}
+
+.auto-resizable-iframe > div {
+  position: relative;
+  padding-bottom: 75%;
+  height: 0px;
+}
+
+.auto-resizable-iframe iframe, video {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
 }
 
 /*Demo Container for videos and console*/
