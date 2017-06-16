@@ -21,18 +21,18 @@
 
                     player.on('pause', function () {
                         player.getCurrentTime().then(function (seconds) {
-                            console.log('Vimeo video ' + id + ' paused at: ' + seconds);
+                            console.log('Vimeo video ' + id + ' paused at: ' + seconds + '\n');
                         }).catch(function (error) {
-                            console.log('There was an error');
+                            console.log('Message:');
                         });
                     });
 
                     player.on('play', function () {
                         player.on('timeupdate', function () {
                             player.getCurrentTime().then(function (seconds) {
-                                console.log('Vimeo video ' + id + ' played at: ' + seconds);
+                                console.log('Vimeo video ' + id + ' played at: ' + seconds + '\n');
                             }).catch(function (error) {
-                                console.log('There was an error');
+                                console.log('Message:');
                             });
                         });
                     });
@@ -70,16 +70,16 @@
                                 printStatus(' has ended at ');
                             } else if (playerStatus == 1) {
                                 message = setInterval(function () {
-                                    console.log('Youtube video ' + id + ' is playing at ' + ytplayer.getCurrentTime());
+                                    console.log('Youtube video ' + id + ' is playing at ' + ytplayer.getCurrentTime() + '\n');
                                 }, 1000);
                             } else if (playerStatus == 2) {
-                                console.log('Youtube video ' + id + ' has been paused at ' + ytplayer.getCurrentTime());
+                                console.log('Youtube video ' + id + ' has been paused at ' + ytplayer.getCurrentTime() + '\n');
                             } else if (playerStatus == 3) {
-                                console.log('Youtube video ' + id + ' is buffering at ' + ytplayer.getCurrentTime());
+                                console.log('Youtube video ' + id + ' is buffering at ' + ytplayer.getCurrentTime() + '\n');
                             } else if (playerStatus == 5) {
-                                console.log('Youtube video ' + id + ' was cued at ' + ytplayer.getCurrentTime());
+                                console.log('Youtube video ' + id + ' was cued at ' + ytplayer.getCurrentTime() + '\n');
                             } 
-                            if (playerStatus != 1) {
+                            if (playerStatus > 1) {
                                 clearInterval(message);
                             }
                         }
@@ -104,11 +104,11 @@
 
                 $this.on('play', function () {
                     $this.on('timeupdate', function () {
-                        console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
+                        console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime + '\n');
                     });
                 });    
                 $this.on('pause', function () {
-                    console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);      
+                    console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime + '\n');
                 });    
             }
 

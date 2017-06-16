@@ -356,7 +356,7 @@
                     JSON.stringify(message) :
                     String(message)) + '\n';
             } else {
-                logger.innerHTML += message + '\n';
+                return logger.prepend(message);
             }
         }
     })();
