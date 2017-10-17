@@ -1,120 +1,183 @@
 (function ($) {
-    $.fn.videoLog = function (options) {
+  $.fn.videoLog = function (options) {
 
-        // Establish our settings
-        var settings = $.extend({}, options);
-        var youtubeVids = [];
+    function throttle (callback, limit) {
 
-        return this.each(function () {
+      var wait = false;
+      return function () {
+        if (!wait) {
 
-            var $this = $(this);
-            // Check if object is an iframe element,
-            // then check if src attribute contains vimeo or youtube
-            if ($this.is("iframe")) {
-                if ($this.attr('src').indexOf("vimeo") > -1) {
+          callback.apply(null, arguments);
+          wait = true;
+          setTimeout(function () {
+            wait = false;
+          }, limit);
+        }
+      }
+    }
 
-                    // Vimeo API Script
-                    var id = this.id;
-                    var player = new Vimeo.Player(id);
+    var callApi = throttle(makeRequest, 2000);
 
-                    player.on('pause', function () {
-                        player.getCurrentTime().then(function (seconds) {
-                            console.log('Vimeo video ' + id + ' paused at: ' + seconds);
-                        }).catch(function (error) {
-                            console.log("There was an error");
-                        });
-                    });
+    function makeRequest () {
+      console.log('API CALLED');
+    }
 
-                    player.on('play', function () {
-                        player.on('timeupdate', function () {
-                            player.getCurrentTime().then(function (seconds) {
-                                console.log('Vimeo video ' + id + ' played at: ' + seconds);
-                            }).catch(function (error) {
-                                console.log("There was an error");
-                            });
-                        });
-                    });
+    function createCheckpointArray (durationInSeconds) {
+      var checkpoints = [];
+      console.log(durationInSeconds)
+      videoLength = durationInSeconds
+      var checkpoint = durationInSeconds / 10;
+      console.log(checkpoint)
+      for (var i = 0; i < 10; i++) {
+        var flag = checkpoint * i
+        checkpoints.push(flag.toFixed() + 'seconds')
+        console.log(checkpoints)
+      }
+      return checkpoints
+    }
 
-                    //END of Vimeo video
-                }
-                else if ($this.attr('src').indexOf("youtube") > -1) {
+    function checkArrayForTimestamp (array, currentTime) {
+      if (array.indexOf(currentTime.toFixed() + 'seconds') > -1) {
+        console.log('attempt request')
+        callApi()
+      }
+    }
 
-                    youtubeVids.push(this);
-                    var videoScope = this;
+    // Establish our settings
+    var settings = $.extend({}, options);
+    var youtubeVideos = [];
 
-                    function createYoutubeVideoById(id) {
-                        var id = youtubeVids[i].id;
-                        var ytplayer;
-                        ytplayer = new YT.Player(id, {
-                            events: {
-                                'onReady': onPlayerReady,
-                                'onStateChange': onPlayerStateChange
-                            }
-                        });
 
-                        function onPlayerReady(event) {
-                            document.getElementById(id);
-                        }
+    return this.each(function () {
 
-                        function getStatus(playerStatus) {
+      var $this = $(this);
+      // Check if object is an iframe element,
+      // then check if src attribute contains vimeo or youtube
+      if ($this.is("iframe")) {
 
-                            if (playerStatus == -1) {
-                                console.log("Not yet started"); // unstarted = gray
-                            } else if (playerStatus == 0) {
-                                console.log("Youtube video " + id + " has ended at " + ytplayer.getCurrentTime());
-                            } else if (playerStatus == 1) {
-                                var message = setInterval(function () {
-                                    console.log("Youtube video " + id + " is playing at " + ytplayer.getCurrentTime());
-                                }, 1000);
-                            } else if (playerStatus == 2) {
-                                console.log("Youtube video " + id + " has been paused at " + ytplayer.getCurrentTime());
-                            } else if (playerStatus == 3) {
-                                console.log("Youtube video " + id + " is buffering at " + ytplayer.getCurrentTime());
-                            } else if (playerStatus == 5) {
-                                console.log("Youtube video " + id + " was cued at " + ytplayer.getCurrentTime());
-                            } else if (playerStatus !== 1) {
-                                clearInterval(message);
-                            }
+        // Vimeo Video
+        if ($this.attr('src').indexOf("vimeo") > -1) {
+          var id = this.id;
+          var player = new Vimeo.Player(id);
+          var checkpoints;
+          player.getDuration().then(function(duration) {
+            checkpoints = createCheckpointArray(duration)
+          }).catch(function(error) {
+            console.log(error)
+          })
 
-                        }
+          player.on('pause', function () {
+            player.getCurrentTime().then(function (seconds) {
+              console.log('Vimeo video ' + id + ' paused at: ' + seconds);
+            }).catch(function (error) {
+              console.log("There was an error");
+            });
+          });
 
-                        function onPlayerStateChange(event) {
-                            getStatus(event.data);
-                        }
-                    }
+          player.on('play', function () {
+            player.on('timeupdate', function () {
+              player.getCurrentTime().then(function (seconds) {
+                console.log('Vimeo video ' + id + ' played at: ' + seconds);
+                checkArrayForTimestamp(checkpoints, seconds)
+              }).catch(function (error) {
+                console.log("There was an error:", error);
+              });
+            });
+          });
+        }
 
-                    window.onYouTubeIframeAPIReady = function () {
+        // Youtube Video
+        else if ($this.attr('src').indexOf("youtube") > -1) {
 
-                        for (i = 0; i < youtubeVids.length; i++) {
-                            createYoutubeVideoById(videoScope.id)
-                        }
-                    }
-                }
+          youtubeVideos.push(this);
+          var videoScope = this;
+          var checkpoints;
+
+          function createYoutubeVideoById(id) {
+            var id = youtubeVideos[i].id;
+            var ytplayer;
+            ytplayer = new YT.Player(id, {
+              events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+              }
+            });
+
+            function onPlayerReady(event) {
+              document.getElementById(id);
+              var duration = ytplayer.getDuration()
+              checkpoints = createCheckpointArray(duration)
             }
-            // Check if object is a video element 
-            if ($this.is("video")) {
 
-                var id = this.id;
+            function getStatus(playerStatus) {
 
-                $this.on("play", function () {
-                    $this.on("timeupdate", function () {
-                        console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
-                    });
-                });
-                $this.on("pause", function () {
-                    console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);      
-                });
-                //END of HTML 5 Video
+              if (playerStatus == -1) {
+                console.log("Not yet started"); // unstarted = gray
+              } else if (playerStatus == 0) {
+                console.log("Youtube video " + id + " has ended at " + ytplayer.getCurrentTime());
+              } else if (playerStatus == 1) {
+                var message = setInterval(function () {
+                  console.log("Youtube video " + id + " is playing at " + ytplayer.getCurrentTime());
+                  var duration = ytplayer.getCurrentTime()
+                  checkArrayForTimestamp(checkpoints, duration)
+                }, 1000);
+              } else if (playerStatus == 2) {
+                console.log("Youtube video " + id + " has been paused at " + ytplayer.getCurrentTime());
+              } else if (playerStatus == 3) {
+                console.log("Youtube video " + id + " is buffering at " + ytplayer.getCurrentTime());
+              } else if (playerStatus == 5) {
+                console.log("Youtube video " + id + " was cued at " + ytplayer.getCurrentTime());
+              } else if (playerStatus !== 1) {
+                clearInterval(message);
+              }
+
             }
 
-            //Youtube-iFrame API script
-            var tag = document.createElement('script');
-            tag.id = 'iframe-api';
-            tag.src = 'https://www.youtube.com/iframe_api';
-            var firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            function onPlayerStateChange(event) {
+              getStatus(event.data);
+            }
+          }
 
+          window.onYouTubeIframeAPIReady = function () {
+
+            for (i = 0; i < youtubeVideos.length; i++) {
+              createYoutubeVideoById(videoScope.id)
+            }
+          }
+        }
+      }
+
+      // HTML5 Video
+      if ($this.is("video")) {
+
+        var id = this.id;
+        var checkpoints;
+
+        $this.on('loadedmetadata', function() {
+          console.log(this)
+           checkpoints = createCheckpointArray(this.duration)
         });
-    };
+
+        $this.on("timeupdate", function () {
+          console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
+          checkArrayForTimestamp(checkpoints, this.currentTime)
+        });
+        $this.on("play", function () {
+        });
+        $this.on("pause", function () {
+          console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);
+        });
+        //END of HTML 5 Video
+      }
+
+      //Youtube-iFrame API script
+      var tag = document.createElement('script');
+      tag.id = 'iframe-api';
+      tag.src = 'https://www.youtube.com/iframe_api';
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    });
+  };
 
 }(jQuery));
