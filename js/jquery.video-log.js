@@ -1,5 +1,10 @@
 (function ($) {
   $.fn.videoLog = function (options) {
+    // Establish our settings
+    var settings = $.extend({
+      connectId: null,
+    }, options);
+    var youtubeVideos = [];
 
     function throttle (callback, limit) {
       console.log(arguments)
@@ -17,19 +22,20 @@
 
     var callApi = throttle(makeRequest, 2000);
 
-    function makeRequest (currentTime, totalTime, latestCompletion) {
+    function makeRequest (currentTime, totalTime, latestCompletion, $context) {
       console.log('API CALLED', currentTime, totalTime, latestCompletion);
-      // person = connect id
-      // tag = video id
-      var url = 'https://connect.example.com/dhportal-videos?person=' + 1234 + '&tag=' + 1234
-      // $.ajax(url, {
-      //   method: 'POST',
-      //   data: {
-      //     current_position: time,
-      //     completed_percentage: calculateLatestCompletion(currentTime, totalTime, latestCompletion),
-      //     completed_at: currentTime === totlaTime ? Date.now() : null,
-      //   },
-      // })
+      var connectId = settings.connectId
+      var mediaId = $context.attr('data-media-id')
+      console.log(connectId, mediaId)
+      var url = 'https://private-anon-c86ad25f29-dhportalconnect.apiary-mock.com/dhportal-videos?person=' + 51234 + '&tag=' + 456
+      $.ajax(url, {
+        method: 'POST',
+        data: {
+          current_position: currentTime,
+          completed_percentage: calculateLatestCompletion(currentTime, totalTime, latestCompletion),
+          completed_at: currentTime === totalTime ? Date.now() : null,
+        },
+      })
     }
 
     function calculatePercentComplete (currentTime, totalTime) {
@@ -57,19 +63,15 @@
     }
 
     // This function will return latestCompletion so you can reassign the variable correctly
-    function checkArrayForTimestamp (array, currentTime, latestCompletion) {
+    function checkArrayForTimestamp (array, currentTime, latestCompletion, $context) {
       var seconds = currentTime.toFixed()
       var completion = calculateLatestCompletion(currentTime, array[array.length - 1], latestCompletion)
       if (array.indexOf(seconds) > -1) {
         console.log('attempt request')
-        callApi(seconds, array[array.length - 1], completion)
+        callApi(seconds, array[array.length - 1], completion, $context)
       }
       return completion
     }
-
-    // Establish our settings
-    var settings = $.extend({}, options);
-    var youtubeVideos = [];
 
     return this.each(function () {
 
@@ -103,7 +105,7 @@
             player.on('timeupdate', function () {
               player.getCurrentTime().then(function (seconds) {
                 console.log('Vimeo video ' + id + ' played at: ' + seconds);
-                latestCompletion = checkArrayForTimestamp(checkpoints, seconds, latestCompletion)
+                latestCompletion = checkArrayForTimestamp(checkpoints, seconds, latestCompletion, $this)
               }).catch(function (error) {
                 console.log("There was an error:", error);
               });
@@ -145,7 +147,7 @@
                 var message = setInterval(function () {
                   console.log("Youtube video " + id + " is playing at " + ytplayer.getCurrentTime());
                   var duration = ytplayer.getCurrentTime()
-                  latestCompletion = checkArrayForTimestamp(checkpoints, duration, latestCompletion)
+                  latestCompletion = checkArrayForTimestamp(checkpoints, duration, latestCompletion, $this)
                 }, 1000);
               } else if (playerStatus == 2) {
                 console.log("Youtube video " + id + " has been paused at " + ytplayer.getCurrentTime());
@@ -187,7 +189,7 @@
 
         $this.on("timeupdate", function () {
           console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
-          latestCompletion = checkArrayForTimestamp(checkpoints, this.currentTime, latestCompletion)
+          latestCompletion = checkArrayForTimestamp(checkpoints, this.currentTime, latestCompletion, $this)
         });
         $this.on("play", function () {
         });
