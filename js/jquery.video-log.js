@@ -7,7 +7,6 @@
     var youtubeVideos = [];
 
     function throttle (callback, limit) {
-      console.log(arguments)
       var wait = false;
       return function () {
         if (!wait) {
@@ -23,10 +22,8 @@
     var callApi = throttle(makeRequest, 2000);
 
     function makeRequest (currentTime, totalTime, latestCompletion, $context) {
-      console.log('API CALLED', currentTime, totalTime, latestCompletion);
       var connectId = settings.connectId
       var mediaId = $context.attr('data-media-id')
-      console.log(connectId, mediaId)
       var url = 'https://private-anon-c86ad25f29-dhportalconnect.apiary-mock.com/dhportal-videos?person=' + 51234 + '&tag=' + 456
       $.ajax(url, {
         method: 'POST',
@@ -57,7 +54,6 @@
       for (var i = 0; i < 10; i++) {
         var flag = checkpoint * (i + 1)
         checkpoints.push(flag.toFixed())
-        console.log(checkpoints)
       }
       return checkpoints
     }
@@ -67,7 +63,6 @@
       var seconds = currentTime.toFixed()
       var completion = calculateLatestCompletion(currentTime, array[array.length - 1], latestCompletion)
       if (array.indexOf(seconds) > -1) {
-        console.log('attempt request')
         callApi(seconds, array[array.length - 1], completion, $context)
       }
       return completion
@@ -90,24 +85,24 @@
           player.getDuration().then(function(duration) {
             checkpoints = createCheckpointArray(duration)
           }).catch(function(error) {
-            console.log(error)
+            // console.log(error)
           })
 
           player.on('pause', function () {
             player.getCurrentTime().then(function (seconds) {
-              console.log('Vimeo video ' + id + ' paused at: ' + seconds);
+              // console.log('Vimeo video ' + id + ' paused at: ' + seconds);
             }).catch(function (error) {
-              console.log("There was an error");
+              // console.log("There was an error");
             });
           });
 
           player.on('play', function () {
             player.on('timeupdate', function () {
               player.getCurrentTime().then(function (seconds) {
-                console.log('Vimeo video ' + id + ' played at: ' + seconds);
+                // console.log('Vimeo video ' + id + ' played at: ' + seconds);
                 latestCompletion = checkArrayForTimestamp(checkpoints, seconds, latestCompletion, $this)
               }).catch(function (error) {
-                console.log("There was an error:", error);
+                // console.log("There was an error:", error);
               });
             });
           });
@@ -140,21 +135,21 @@
             function getStatus(playerStatus) {
 
               if (playerStatus == -1) {
-                console.log("Not yet started"); // unstarted = gray
+                // console.log("Not yet started"); // unstarted = gray
               } else if (playerStatus == 0) {
-                console.log("Youtube video " + id + " has ended at " + ytplayer.getCurrentTime());
+                // console.log("Youtube video " + id + " has ended at " + ytplayer.getCurrentTime());
               } else if (playerStatus == 1) {
                 var message = setInterval(function () {
-                  console.log("Youtube video " + id + " is playing at " + ytplayer.getCurrentTime());
+                  // console.log("Youtube video " + id + " is playing at " + ytplayer.getCurrentTime());
                   var duration = ytplayer.getCurrentTime()
                   latestCompletion = checkArrayForTimestamp(checkpoints, duration, latestCompletion, $this)
                 }, 1000);
               } else if (playerStatus == 2) {
-                console.log("Youtube video " + id + " has been paused at " + ytplayer.getCurrentTime());
+                // console.log("Youtube video " + id + " has been paused at " + ytplayer.getCurrentTime());
               } else if (playerStatus == 3) {
-                console.log("Youtube video " + id + " is buffering at " + ytplayer.getCurrentTime());
+                // console.log("Youtube video " + id + " is buffering at " + ytplayer.getCurrentTime());
               } else if (playerStatus == 5) {
-                console.log("Youtube video " + id + " was cued at " + ytplayer.getCurrentTime());
+                // console.log("Youtube video " + id + " was cued at " + ytplayer.getCurrentTime());
               } else if (playerStatus !== 1) {
                 clearInterval(message);
               }
@@ -183,18 +178,17 @@
         var latestCompletion = 0;
 
         $this.on('loadedmetadata', function() {
-          console.log(this)
-           checkpoints = createCheckpointArray(this.duration)
+          checkpoints = createCheckpointArray(this.duration)
         });
 
         $this.on("timeupdate", function () {
-          console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
+          // console.log('HTML5 Video ' + id + ' played at: ' + this.currentTime);
           latestCompletion = checkArrayForTimestamp(checkpoints, this.currentTime, latestCompletion, $this)
         });
         $this.on("play", function () {
         });
         $this.on("pause", function () {
-          console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);
+          // console.log('HTML5 Video ' + id + ' paused at: ' + this.currentTime);
         });
         //END of HTML 5 Video
       }
