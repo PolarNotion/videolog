@@ -24,7 +24,7 @@
     function makeRequest (currentTime, totalTime, latestCompletion, $context) {
       var connectId = settings.connectId
       var mediaId = $context.attr('data-media-id')
-      var url = 'https://private-anon-c86ad25f29-dhportalconnect.apiary-mock.com/dhportal-videos?person=' + 51234 + '&tag=' + 456
+      var url = 'https://private-anon-c86ad25f29-dhportalconnect.apiary-mock.com/dhportal-videos?person=' + connectId + '&tag=' + mediaId
       $.ajax(url, {
         method: 'POST',
         data: {
@@ -47,10 +47,8 @@
 
     function createCheckpointArray (durationInSeconds) {
       var checkpoints = [];
-      console.log(durationInSeconds)
       videoLength = durationInSeconds
       var checkpoint = durationInSeconds / 10;
-      console.log(checkpoint)
       for (var i = 0; i < 10; i++) {
         var flag = checkpoint * (i + 1)
         checkpoints.push(flag.toFixed())
@@ -167,7 +165,29 @@
               createYoutubeVideoById(videoScope.id)
             }
           }
-        }
+        } // end youtube
+
+        // Haivision Video
+        else if ($this.attr('src').indexOf("theplatform") > -1) {
+          var mediaId = $this.attr('data-media-id');
+          var checkpoints = [];
+          var latestCompletion = 0;
+          window.addEventListener(mediaId + 'Loaded', function() {      
+            var controller = window['player' + mediaId];
+            controller.addEventListener('OnMediaLoadStart', function(e) {
+              if (e.data.baseClip.isAd) return
+              checkpoints = createCheckpointArray(e.data.length / 1000.0)
+            })
+
+            controller.addEventListener('OnMediaPlaying', function(e) {
+              var duration = e.data.currentTime / 1000.0;
+              latestCompletion = checkArrayForTimestamp(checkpoints, duration, latestCompletion, $this)
+            })
+            
+          })
+
+
+        } // end haivision
       }
 
       // HTML5 Video

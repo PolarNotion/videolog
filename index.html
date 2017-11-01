@@ -3,12 +3,12 @@
 <head>
     <script src="js/jquery.min.js"></script>
     <script src="https://player.vimeo.com/api/player.js"></script>
-    <script src="js/jquery.video-log.js"></script>
 </head>
 
 <body>
+    <script src="http://player.theplatform.com/pdk/IfSiAC/tpPdkController.js"></script>
 
-    <h2>Console</h2>
+<!--     <h2>Console</h2>
     <textarea rows="10" cols="40" id="log" readonly></textarea>
 
     <div class="list-videos">
@@ -43,33 +43,45 @@
         <iframe id="yt2" data-media-id="xgf119" class="trackable-video" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="0">
   </iframe>
 
+  <br/>
+ -->
+      <iframe
+        class="trackable-video"
+        data-media-id="WnwC11yOUm_c"
+        id="player"
+        width="500"
+        height="300"
+        src="http://player.theplatform.com/p/IfSiAC/zRWLH3MHyzaX/embed/select/media/WnwC11yOUm_c?form=html" 
+        seamless="seamless"
+        allowfullscreen
+        onload="window.playerWnwC11yOUm_c = $pdk.bind(this, false); $pdk.controller.setIFrame(this, true); window.dispatchEvent(new CustomEvent('WnwC11yOUm_cLoaded'));"
+      >
+    </iframe>
+
+    <iframe
+        class="trackable-video"
+        id="haivision2_1"
+        data-media-id="GV4rbGwpasuJ"
+        width="500"
+        height="300"
+        src="http://player.theplatform.com/p/IfSiAC/zRWLH3MHyzaX/embed/select/media/GV4rbGwpasuJ?form=html"
+        seamless="seamless"
+        allowfullscreen
+        onload="window.playerGV4rbGwpasuJ = $pdk.bind(this, false); $pdk.controller.setIFrame(this,true); window.dispatchEvent(new CustomEvent('GV4rbGwpasuJLoaded'))">
+    </iframe>
+
     </div>
 
+    <script src="js/jquery.video-log.js"></script>
     <script>
         jQuery(document).ready(function($) {
 
             $(".trackable-video").videoLog({
-
+                connectId: 51234
             });
         });
-
-        // (function() {
-        //     if (!console) {
-        //         console = {};
-        //     }
-        //     var old = console.log;
-        //     var logger = document.getElementById('log');
-        //     console.log = function(message) {
-        //         if (typeof message == 'object') {
-        //             logger.innerHTML += (JSON && JSON.stringify ?
-        //                 JSON.stringify(message) :
-        //                 String(message)) + '\n';
-        //         } else {
-        //             logger.innerHTML += message + '\n';
-        //         }
-        //     }
-        // })();
     </script>
+
 
 </body>
 
